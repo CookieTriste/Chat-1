@@ -1,7 +1,7 @@
 socket.emit("name", name);
 
-function sendMessage(){
-  socket.emit('chat message', {name:name, message:$textarea.value});
+function sendMessage() {
+  socket.emit('chat message', { name: name, message: $textarea.value });
   $textarea.value = '';
   $textarea.focus();
 }
@@ -9,7 +9,7 @@ function sendMessage(){
 socket.on('chat message', function(msg) {
   var d = getTime();
   const div = document.createElement('div');
-  div.className = (msg.name == name) ? "me":"you";
+  div.className = (msg.name == name) ? "me" : "you";
   const pre = document.createElement("pre");
   pre.setAttribute("style", "overflow:auto")
   const p = document.createElement("p");
@@ -23,16 +23,16 @@ socket.on('chat message', function(msg) {
   $main.scrollTo(0, $main.scrollHeight);
 });
 
-socket.on("newuser", function(name){
+socket.on("newuser", function(name) {
   var p = document.createElement('p');
-  p.textContent = name + " joined";
+  p.textContent = name + " a rejoint";
   var br = document.createElement("br");
   $people.appendChild(p);
   $people.appendChild(br);
   $people.scrollTo(0, $people.scrollHeight);
 });
 
-socket.on("left", function(message){
+socket.on("left", function(message) {
   var p = document.createElement('p');
   p.textContent = message;
   var br = document.createElement("br");
